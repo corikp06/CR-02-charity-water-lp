@@ -3,45 +3,789 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <title>Small Donations, Big Splashes of Change</title>
+
+    <style>
+
+        /* =========================
+           GENERAL PAGE STYLE
+        ========================= */
+
+        body {
+            margin: 0;
+            font-family: Avenir, "Proxima Nova", Arial, sans-serif;
+            color: #222222;
+            background-color: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        /* =========================
+           NAVIGATION BAR
+        ========================= */
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2E9DF7;
+        }
+
+        .logo span {
+            color: #222222;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222222;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #2E9DF7;
+        }
+
+
+        /* =========================
+           HERO / HOME SECTION
+        ========================= */
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 7%;
+            background-color: #8BD1CB;
+            gap: 50px;
+        }
+
+        .hero-text {
+            width: 50%;
+        }
+
+        .hero-text h1 {
+            font-size: 58px;
+            line-height: 1.05;
+            margin-bottom: 25px;
+            color: #222222;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #FFC907;
+            color: #222222;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-family: Avenir, "Proxima Nova", Arial, sans-serif;
+        }
+
+        .cta-button:hover {
+            background-color: #FF902A;
+        }
+
+        .hero-image {
+            width: 45%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+
+
+        /* =========================
+           FINANCE / IMPACT SECTION
+        ========================= */
+
+        .impact {
+            padding: 90px 7%;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .impact h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #2E9DF7;
+        }
+
+        .impact-intro {
+            max-width: 720px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           WATER TRACE CALCULATOR
+        ========================= */
+
+        .calculator {
+            margin-top: 50px;
+            padding: 50px;
+            background-color: #eaf8f7;
+            border-radius: 25px;
+            border-top: 8px solid #2E9DF7;
+        }
+
+        .calculator h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #159A48;
+        }
+
+        .calculator > p {
+            font-size: 17px;
+        }
+
+        .donation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .donation-button {
+            padding: 12px 28px;
+            border: 2px solid #2E9DF7;
+            background-color: white;
+            color: #2E9DF7;
+            border-radius: 25px;
+            font-size: 17px;
+            cursor: pointer;
+            font-family: Avenir, "Proxima Nova", Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .donation-button:hover {
+            background-color: #2E9DF7;
+            color: white;
+        }
+
+        .calculator-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+
+        /* =========================
+           VISUAL GLOBE
+        ========================= */
+
+        .globe {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #2E9DF7,
+                #8BD1CB
+            );
+
+            position: relative;
+
+            box-shadow:
+                inset -25px -15px 30px rgba(0, 0, 0, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .globe::before {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 60px;
+            background-color: #4FCB53;
+            border-radius: 50%;
+            top: 50px;
+            left: 55px;
+            transform: rotate(-20deg);
+        }
+
+        .globe::after {
+            content: "";
+            position: absolute;
+            width: 55px;
+            height: 45px;
+            background-color: #4FCB53;
+            border-radius: 50%;
+            top: 115px;
+            left: 125px;
+        }
+
+        .location-pin {
+            position: absolute;
+            top: 82px;
+            left: 105px;
+            font-size: 35px;
+            z-index: 2;
+        }
+
+
+        /* =========================
+           IMPACT RESULTS
+        ========================= */
+
+        .results {
+            text-align: left;
+            min-width: 320px;
+        }
+
+        .result-box {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 6px solid #FFC907;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-box h4 {
+            margin: 0 0 8px;
+            color: #2E9DF7;
+            font-size: 16px;
+        }
+
+        .result-box p {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           ACHIEVEMENTS / STORY
+        ========================= */
+
+        .story {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding: 90px 7%;
+            background-color: #f9f9f9;
+        }
+
+        .story-text {
+            width: 50%;
+        }
+
+        .story-text h2 {
+            font-size: 42px;
+            color: #159A48;
+        }
+
+        .story-text p {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .achievement-list {
+            margin-top: 25px;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .achievement-icon {
+            width: 35px;
+            height: 35px;
+            background-color: #FFC907;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .story-image {
+            width: 45%;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+
+
+        /* =========================
+           FINAL DONATE SECTION
+        ========================= */
+
+        .final-cta {
+            text-align: center;
+            padding: 90px 20px;
+            background-color: #2E9DF7;
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .final-cta p {
+            font-size: 19px;
+            margin-bottom: 30px;
+        }
+
+        .final-cta .cta-button {
+            background-color: #FFC907;
+            color: #222222;
+        }
+
+        .final-cta .cta-button:hover {
+            background-color: #FF902A;
+        }
+
+
+        /* =========================
+           MOBILE DESIGN
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero,
+            .story,
+            .calculator-content {
+                flex-direction: column;
+            }
+
+            .hero-text,
+            .hero-image,
+            .story-text,
+            .story-image {
+                width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .calculator {
+                padding: 30px 20px;
+            }
+
+            .results {
+                width: 100%;
+                min-width: 0;
+            }
+
+        }
+
+    </style>
 </head>
+
+
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            charity<span>:water</span>
         </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#finance">Finance</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#donate">Donate</a>
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         HOME / HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <h1>
+                Small donations,
+                Big splashes of change.
+            </h1>
+
+            <p>
+                You don’t need to give a lot to create lasting change.
+                See exactly how your support brings clean water access
+                to families around the world and helps communities thrive.
+            </p>
+
+            <a href="#donate" class="cta-button">
+                Give Clean Water!
+            </a>
+
+        </div>
+
+
+        <div class="hero-image">
+
+              <img src="img/nina.jpg"
+                 alt="Child enjoying clean water">
+
+        </div>
+
     </section>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
+
+
+    <!-- =========================
+         FINANCE / WATER TRACE
+    ========================= -->
+
+    <section class="impact" id="finance">
+
+        <h2>
+            See Where Your Donation Goes
+        </h2>
+
+        <p class="impact-intro">
+            Small donations can contribute to clean water projects.
+            Choose a monthly gift below and explore an example of the
+            impact your support could help make.
+        </p>
+
+
+        <div class="calculator">
+
+            <h3>
+                Interactive Water Trace
+            </h3>
+
+            <p>
+                Choose your monthly donation:
+            </p>
+
+
+            <!-- DONATION BUTTONS -->
+
+            <div class="donation-buttons">
+
+                <button class="donation-button"
+                        onclick="updateImpact(10)">
+                    $10
+                </button>
+
+                <button class="donation-button"
+                        onclick="updateImpact(30)">
+                    $30
+                </button>
+
+                <button class="donation-button"
+                        onclick="updateImpact(50)">
+                    $50
+                </button>
+
+            </div>
+
+
+
+            <div class="calculator-content">
+
+
+                <!-- VISUAL MAP -->
+
+                <div>
+
+                    <div class="globe">
+
+                        <div class="location-pin">
+                            📍
+                        </div>
+
+                    </div>
+
+                    <p>
+                        <strong id="location">
+                            Malawi
+                        </strong>
+                    </p>
+
+                </div>
+
+
+
+                <!-- IMPACT RESULTS -->
+
+                <div class="results">
+
+
+                    <div class="result-box">
+
+                        <h4>
+                            💧 Exact Gallons of Clean Water
+                        </h4>
+
+                        <p id="gallons">
+                            500 gallons
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <h4>
+                            ⏰ Time Saved Per Family
+                        </h4>
+
+                        <p id="time">
+                            5 hours per family
+                        </p>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <h4>
+                            📍 Projected GPS-Tracked Well
+                        </h4>
+
+                        <p id="gps">
+                            -13.2543, 34.3015
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p style="font-size: 13px; margin-top: 30px;">
+                *These numbers are demonstration estimates for this
+                interactive prototype and are not guarantees of project outcomes.
+            </p>
+
+        </div>
+
     </section>
+
+
+
+    <!-- =========================
+         ACHIEVEMENTS
+    ========================= -->
+
+    <section class="story" id="achievements">
+
+        <div class="story-text">
+
+            <h2>
+                Every splash starts somewhere.
+            </h2>
+
+            <p>
+                Access to clean water can create opportunities for families
+                and communities. Your support can help bring water projects
+                closer to the people who need them.
+            </p>
+
+            <p>
+                We believe donations should feel meaningful and transparent.
+                That's why we want supporters to see where their impact goes.
+            </p>
+
+
+            <div class="achievement-list">
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        ✓
+                    </div>
+
+                    Clean water projects
+
+                </div>
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        ✓
+                    </div>
+
+                    Community impact
+
+                </div>
+
+
+                <div class="achievement">
+
+                    <div class="achievement-icon">
+                        ✓
+                    </div>
+
+                    Transparent giving
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="story-image">
+
+              <img src="img/dos.jpg"
+                 alt="Child washing hands with clean water">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DONATE
+    ========================= -->
+
+    <section class="final-cta" id="donate">
+
+        <h2>
+            Ready to make a splash?
+        </h2>
+
+        <p>
+            Your donation can be part of a bigger change.
+        </p>
+
+        <button class="cta-button"
+                onclick="alert('Thank you for choosing to give clean water!')">
+
+            Give Clean Water!
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+         WATER TRACE CALCULATOR
+    ========================= -->
+
+    <script>
+
+        function updateImpact(amount) {
+
+            let gallons;
+            let time;
+            let location;
+            let gps;
+
+
+            if (amount === 10) {
+
+                gallons = "500 gallons";
+                time = "5 hours per family";
+                location = "Malawi";
+                gps = "-13.2543, 34.3015";
+
+            }
+
+
+            else if (amount === 30) {
+
+                gallons = "1,500 gallons";
+                time = "15 hours per family";
+                location = "Ethiopia";
+                gps = "9.1450, 40.4897";
+
+            }
+
+
+            else if (amount === 50) {
+
+                gallons = "2,500 gallons";
+                time = "25 hours per family";
+                location = "Malawi";
+                gps = "-13.2543, 34.3015";
+
+            }
+
+
+            document.getElementById("gallons").innerText = gallons;
+
+            document.getElementById("time").innerText = time;
+
+            document.getElementById("location").innerText = location;
+
+            document.getElementById("gps").innerText = gps;
+
+        }
+
+    </script>
+
+
 </body>
 </html>
+
+
